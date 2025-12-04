@@ -1,0 +1,20 @@
+# ESTO ES PARA NO SUBIR BASURA LIT (NUDE-MODULES, COSAS DEL TERRAFORT,ETC) GAAAAAAAAAAAAA
+# Node
+node_modules
+npm-debug.log
+yarn.lock
+
+# Docker
+*.log
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/.terraform.lock.hcl
+
+# Sonar / Scanner
+.scannerwork/
+
+# Otros
+.env
