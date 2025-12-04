@@ -1,0 +1,27 @@
+---
+- name: Desplegar contenedor hola-mundo con Docker
+  hosts: local
+  gather_facts: false
+
+  tasks:
+    - name: Verificar si el contenedor ya está corriendo
+      ansible.builtin.command: docker ps -q --filter name=hola-mundo-app
+      register: container_check
+      changed_when: false
+
+    - name: Verificar si el contenedor existe (pero detenido)
+      ansible.builtin.command: docker ps -aq --filter name=hola-mundo-app
+      register: container_exists
+      changed_when: false
+
+    - name: Iniciar contenedor existente si estaba detenido
+      ansible.builtin.command: docker start hola-mundo-app
+      when:
+        - container_check.stdout == ""
+        - container_exists.stdout != ""
+
+    - name: Crear y ejecutar contenedor si no existe
+      ansible.builtin.command: >
+        docker run -d --name hola-mundo-app
+        -p 3000:3000 hola-mundo-app
+      when: container_exists.stdout == ""
