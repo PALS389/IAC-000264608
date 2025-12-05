@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "hola_mundo" {
-  bucket = "iac-hola-mundo-pals-1234" # CAMBIA esto a un nombre único
+  bucket = "iac-con-todo-000264608"
 }
 
 resource "aws_s3_bucket_website_configuration" "sitio" {
